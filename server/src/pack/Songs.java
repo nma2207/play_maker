@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import java.util.Set;
 import java.util.HashSet;
 
-@Entity(name="songs")
+
 public class Songs {
     private int idsongs;
     private String name_song;
