@@ -1,6 +1,6 @@
 package pack;
 
-public class Singer {
+public class Singer{
     private int idsinger;
     private String name_singer;
     public Singer(){}
