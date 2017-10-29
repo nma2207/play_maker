@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 
+import command.Command;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -77,26 +78,11 @@ public class Client {
 
     }
     public static void main(String []args){
-        Singer s = new Singer("Roza Sivacheva");
-
-        JSONArray jsonArray = new JSONArray();
-        jsonArray.add(s.toJSON());
-        jsonArray.add(s.toJSON());
-        System.out.println(jsonArray.toJSONString());
-
-        String s1 = jsonArray.toString();
-        JSONArray jsonArray1 = (JSONArray)JSONValue.parse(s1);
-        for(int i =0 ; i<jsonArray1.size(); i++)
-        {
-            try {
-                s.fromJSON((JSONObject) jsonArray1.get(i));
-            }
-            catch (Exception e){
-                System.out.println(e.getMessage());
-            }
+        try {
+            System.out.println(Command.parse("set singer AC/DC").toString());
         }
-        System.out.println(s.toJSON().toJSONString());
-
-        System.out.println(new Song("Song", "Genre", "Man", "4:00").toJSON().toJSONString());
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 }
