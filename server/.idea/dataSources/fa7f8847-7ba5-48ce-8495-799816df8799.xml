@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="playmakerdb@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.4">
+    <root id="1"/>
+    <schema id="2" parent="1" name="playmakerdb">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="information_schema"/>
+    <schema id="4" parent="1" name="mysql"/>
+    <schema id="5" parent="1" name="performance_schema"/>
+    <schema id="6" parent="1" name="phpmyadmin"/>
+    <table id="7" parent="2" name="genre"/>
+    <table id="8" parent="2" name="singer"/>
+    <table id="9" parent="2" name="songs"/>
+    <column id="10" parent="7" name="idgenre">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="11" parent="7" name="name_genre">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="12" parent="7" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idgenre</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="13" parent="8" name="idsinger">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="14" parent="8" name="name_singer">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="15" parent="8" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idsinger</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="16" parent="9" name="idsongs">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="17" parent="9" name="name_song">
+      <Position>2</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="18" parent="9" name="durability">
+      <Position>3</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="9" name="path">
+      <Position>4</Position>
+      <DataType>varchar(45)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="20" parent="9" name="genre_idgenre">
+      <Position>5</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="21" parent="9" name="singer_idsinger">
+      <Position>6</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="22" parent="9" name="fk_songs_genre_idx">
+      <ColNames>genre_idgenre</ColNames>
+    </index>
+    <index id="23" parent="9" name="fk_songs_singer1_idx">
+      <ColNames>singer_idsinger</ColNames>
+    </index>
+    <key id="24" parent="9" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>idsongs</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="25" parent="9" name="fk_songs_genre">
+      <ColNames>genre_idgenre</ColNames>
+      <RefSchemaName>playmakerdb</RefSchemaName>
+      <RefTableName>genre</RefTableName>
+      <RefColNames>idgenre</RefColNames>
+    </foreign-key>
+    <foreign-key id="26" parent="9" name="fk_songs_singer1">
+      <ColNames>singer_idsinger</ColNames>
+      <RefSchemaName>playmakerdb</RefSchemaName>
+      <RefTableName>singer</RefTableName>
+      <RefColNames>idsinger</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
