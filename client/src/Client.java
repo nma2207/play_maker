@@ -14,9 +14,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 import pack.Singer;
 import pack.Song;
-
+import sound.Sound;
 public class Client {
-    public static void main1(String[] args)
+    public static void playSong(JSONObject command){
+        String path = (String)command.get("path");
+        Sound.playSound(path).join();
+    }
+    public static void main(String[] args)
     {
 
         Socket socket= null;
@@ -50,21 +54,30 @@ public class Client {
 
         }
         System.out.println("Write the command");
+
         Scanner scanner = new Scanner(System.in);
         while(true) {
+            System.out.print("=> ");
 
-
-            String command = scanner.nextLine();
-            String [] comm = command.split(" ");
-
-
+            String command = scanner.nextLine().trim();
+            if(command.compareTo("")==0)
+                continue;
+            JSONObject jsonCommand = null;
+            try {
+                jsonCommand = Command.parse(command);
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+                continue;
+            }
+            if(((String)jsonCommand.get("command")).compareTo("play")==0){
+                playSong(jsonCommand);
+                continue;
+            }
             //System.out.println(command);
             //out.println(command);
-            String output = "";
-            JSONObject jsonObject = new JSONObject();
-            jsonObject.put("command", comm[0]);
-            jsonObject.put("name", comm[1]);
-            out.println(jsonObject.toJSONString());
+            out.println(jsonCommand.toJSONString());
+            String output=null;
             try {
                 output = in.readLine();
             } catch (Exception e) {
@@ -77,12 +90,6 @@ public class Client {
 
 
     }
-    public static void main(String []args){
-        try {
-            System.out.println(Command.parse("set singer AC/DC").toString());
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
+
+
 }
