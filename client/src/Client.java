@@ -18,7 +18,10 @@ import sound.Sound;
 public class Client {
     public static void playSong(JSONObject command){
         String path = (String)command.get("path");
-        Sound.playSound(path).join();
+        if(!Sound.playSound(path))
+        {
+            System.out.println("Play error");
+        }
     }
     public static void main(String[] args)
     {

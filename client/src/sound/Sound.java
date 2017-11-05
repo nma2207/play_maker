@@ -26,8 +26,8 @@ public class Sound {
             clip.addLineListener(new Listener());
             volumeC = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
             released = true;
-        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException exc) {
-            exc.printStackTrace();
+        } catch (Exception exc) {
+            //exc.printStackTrace();
             released = false;
         }
     }
@@ -106,11 +106,20 @@ public class Sound {
     }
 
     //Статический метод, для удобства
-    public static Sound playSound(String s) {
-        File f = new File(s);
+    public static boolean playSound(String s) {
+        File f = null;
+        try {
+            f = new File(s);
+        }
+        catch(Exception e){
+            System.out.println("Cannot open");
+        }
         Sound snd = new Sound(f);
-        snd.play();
-        return snd;
+        if(snd.isReleased()) {
+            snd.play();
+            return true;
+        }
+        return false;
     }
 
     private class Listener implements LineListener {
