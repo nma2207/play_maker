@@ -13,6 +13,13 @@ public class TestMain {
         System.out.println("\tfailed tests: " + result.getFailureCount());
         System.out.println("\tignored tests: " + result.getIgnoreCount());
         System.out.println("\tsuccess: " + result.wasSuccessful());
+
+
+        Result result1 = runner.run(CommandConvertTest.class);
         System.out.println("Command convert test");
+        System.out.println("\trun tests: " + result1.getRunCount());
+        System.out.println("\tfailed tests: " + result1.getFailureCount());
+        System.out.println("\tignored tests: " + result1.getIgnoreCount());
+        System.out.println("\tsuccess: " + result1.wasSuccessful());
     }
 }
