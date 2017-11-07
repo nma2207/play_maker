@@ -2,14 +2,16 @@ package test;
 
 import command.Command;
 import org.json.simple.JSONObject;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 public class CommandConvertTest extends Assert {
     private final Map<String, JSONObject> stringToJSONData = new HashMap<String, JSONObject>();
+
+    private final List<String> stringToJSONDataExceptions = new ArrayList<String>();
     @After
     public void setUpStringToJSONData()
     {
@@ -39,9 +41,22 @@ public class CommandConvertTest extends Assert {
 
 
     }
+    //with exceptions
+    @Before
+    public void setUpStringToJSONDataExeptions(){
+        stringToJSONDataExceptions.add("find a");
+        stringToJSONDataExceptions.add("play a b s");
+        stringToJSONDataExceptions.add("find Kirkiriv");
+        //stringToJSONDataExceptions.add("play D:\\1.wav");
+
+    }
+
     @After
     public void tearDownStringToJSONData(){
         stringToJSONData.clear();
+    }
+    public void tearDownStringToJSONDataExeptions(){
+        stringToJSONDataExceptions.clear();
     }
     @Test
     public void testStringToJSONData(){
@@ -54,6 +69,19 @@ public class CommandConvertTest extends Assert {
             }
             catch (Exception e){}
             assertEquals(testData, actual);
+        }
+    }
+    @Ignore
+    @Test(expected = Exception.class)
+    public void testStringToJSONDataExeptions() throws Exception{
+        for(String s: this.stringToJSONDataExceptions){
+            try {
+                Command.parse(s);
+                assertEquals(1,0);
+            }
+            catch(Exception e){
+                assertEquals(1,1);
+            }
         }
     }
 }

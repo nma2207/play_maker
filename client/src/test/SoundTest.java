@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.HashMap;
 public class SoundTest extends  Assert{
     private  final Map<String, Boolean> soundResultData = new HashMap<String, Boolean>();
+
     @Before
     public  void setUpSoundResultData() {
         soundResultData.put("D:\\", false);
@@ -28,4 +29,5 @@ public class SoundTest extends  Assert{
             assertEquals(testData, actual);
         }
     }
+
 }
