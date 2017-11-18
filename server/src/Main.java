@@ -1,3 +1,4 @@
+import jdk.nashorn.internal.runtime.ECMAException;
 import org.hibernate.HibernateException;
 import org.hibernate.Metamodel;
 import org.hibernate.query.Query;
@@ -19,7 +20,15 @@ import APIConnector.Connector;
 public class Main {
     public static void main(String[] args) throws SQLException {
         Connector c = new Connector(/* Список жанров в виде ArrayList на английском trance, pop, rock... */);
-        String res = c.getGenre("Розалия Тазиева", "Меня легко потерять");
+        String res="";
+        try {
+            res = c.getGenre("deadmau5", "Strobe");
+        }
+        catch(Exception e){
+            System.out.println("hui");
+        }
+        System.out.println(res);
+        System.out.println();
         Collection singers = allWork.getInstance().getSingerDAO().getAllSingers();
         Iterator iterator = singers.iterator();
         System.out.println("========Все    исполнители=========");
