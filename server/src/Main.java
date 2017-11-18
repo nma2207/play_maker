@@ -25,7 +25,7 @@ public class Main {
             res = c.getGenre("deadmau5", "Strobe");
         }
         catch(Exception e){
-            System.out.println("hui");
+            System.out.println("errors");
         }
         System.out.println(res);
         System.out.println();
