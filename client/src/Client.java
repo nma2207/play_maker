@@ -23,7 +23,7 @@ public class Client {
             System.out.println("Play error");
         }
     }
-    public static void main(String[] args)
+    public static void main1(String[] args)
     {
 
         Socket socket= null;
@@ -91,6 +91,42 @@ public class Client {
 
 
 
+
+    }
+    public static void main(String[] args)
+    {
+        System.out.println("Write the command");
+
+        Scanner scanner = new Scanner(System.in);
+        while(true) {
+            System.out.print("=> ");
+
+            String command = scanner.nextLine().trim();
+            if(command.compareTo("")==0)
+                continue;
+            JSONObject jsonCommand = null;
+            try {
+                jsonCommand = Command.parse(command);
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+                continue;
+            }
+            if(((String)jsonCommand.get("command")).compareTo("play")==0){
+                playSong(jsonCommand);
+                continue;
+            }
+            //System.out.println(command);
+            //out.println(command);
+            //out.println(jsonCommand.toJSONString());
+            String output=jsonCommand.toJSONString();
+            try {
+                //output = in.readLine();
+            } catch (Exception e) {
+
+            }
+            System.out.println(output);
+        }
 
     }
 
