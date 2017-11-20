@@ -15,8 +15,8 @@ import javax.swing.*;
 import org.hibernate.Session;
 
 public class SongsDAOImpl implements SongsDAO{
-    public void addSong(Songs songs) throws SQLException{
-        Session session = null;
+    public void addSong(Songs songs, Session session) {
+       // Session session = null;
         try
         {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -28,15 +28,10 @@ public class SongsDAOImpl implements SongsDAO{
         {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка при добавлении Songs", JOptionPane.OK_OPTION);
         }
-        finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+
     }
-    public Songs getSongById(int idsong) throws SQLException
+    public Songs getSongById(int idsong, Session session)
     {
-        Session session = null;
         Songs songs = null;
         try
         {
@@ -47,48 +42,34 @@ public class SongsDAOImpl implements SongsDAO{
         {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка 'findById' Songs", JOptionPane.OK_OPTION);
         }
-        finally
-        {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
         return songs;
     }
-    public Collection getAllSongs() throws SQLException {
-        Session session = null;
+    public Collection getAllSongs(Session session)  {
+        //Session session = null;
         List songs = new ArrayList<Songs>();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             songs = session.createCriteria(Songs.class).list();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка 'getAll' Songs", JOptionPane.OK_OPTION);
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
         }
         return songs;
     }
 
-    public void deleteSong(Songs songs) throws SQLException {
-        Session session = null;
+    public void deleteSong(Songs songs, Session session) {
+        //Session session = null;
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
             session.delete(songs);
-            session.getTransaction().commit();
+            session.getTransaction();//.commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка при удалении Songs", JOptionPane.OK_OPTION);
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
         }
     }
 
-    public Collection getSongsBySinger(Singer singer) throws SQLException {
-        Session session = null;
+    public Collection getSongsBySinger(Singer singer, Session session){
+
         List songs = new ArrayList<Songs>();
         try {
             session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -96,13 +77,16 @@ public class SongsDAOImpl implements SongsDAO{
             int idsinger = singer.getIdsinger();
             Query query = session.createQuery(" select s "+ " from Songs s"+ " where s.singer_idsinger = :singerId ").setInteger("singerId",idsinger);
             songs = (List<Songs>)query.list();
-            session.getTransaction().commit();
-        } finally {  if (session != null && session.isOpen())  session.close();}
+            session.getTransaction();//.commit();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.fillInStackTrace());
+        }
         return songs;
     }
 
-    public Collection getSongsByGenre(Genre genre) throws SQLException {
-        Session session = null;
+    public Collection getSongsByGenre(Genre genre,Session session) {
         List songs = new ArrayList<Songs>();
         try {
             session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -110,11 +94,12 @@ public class SongsDAOImpl implements SongsDAO{
             int idgenre = genre.getIdgenre();
             Query query = session.createQuery(" select s "+ " from Songs s"+ " where s.genre_idgenre = :genreId ").setInteger("genreId",idgenre);
             songs = (List<Songs>)query.list();
-            session.getTransaction().commit();
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
+            session.getTransaction();//.commit();
+
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.fillInStackTrace());
         }
         return songs;
     }

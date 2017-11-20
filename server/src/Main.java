@@ -15,8 +15,9 @@ import javax.persistence.metamodel.EntityType;
 import java.util.Iterator;
 import java.util.Map;
 
-public class Main {public static void main(String[] args) throws SQLException {
-    Collection singers = allWork.getInstance().getSingerDAO().getAllSingers();
+public class Main {
+    public static void main(String[] args) throws SQLException {
+    /**Collection singers = allWork.getInstance().getSingerDAO().getAllSingers();
     Iterator iterator = singers.iterator();
     System.out.println("========Все    исполнители=========");
     while (iterator.hasNext()) {
@@ -44,6 +45,6 @@ public class Main {public static void main(String[] args) throws SQLException {
         }
     }
 
-
+**/
 }
 }

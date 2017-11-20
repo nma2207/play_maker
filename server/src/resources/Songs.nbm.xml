@@ -1,5 +1,5 @@
 <hibernate-mapping>
-    <class name="pack.Songs" table="songs">
+    <class name="pack.Songs">
         <id name="idsongs" type="integer">
             <generator class="increment"/>
         </id>

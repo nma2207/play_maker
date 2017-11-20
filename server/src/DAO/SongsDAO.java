@@ -1,5 +1,6 @@
 package DAO;
 
+import org.hibernate.Session;
 import pack.Singer;
 import pack.Genre;
 import pack.Songs;
@@ -8,10 +9,10 @@ import java.util.Collection;
 import java.sql.SQLException;
 
 public interface SongsDAO {
-    public void addSong(Songs songs) throws SQLException;
-    public Songs getSongById(int idsong) throws SQLException;
-    public Collection getAllSongs() throws SQLException;
-    public void deleteSong(Songs songs) throws SQLException;
-    public Collection getSongsBySinger(Singer singer) throws SQLException;
-    public Collection getSongsByGenre(Genre genre) throws SQLException;
+    public void addSong(Songs songs, Session session) ;
+    public Songs getSongById(int idsong, Session session);
+    public Collection getAllSongs(Session session) ;
+    public void deleteSong(Songs songs, Session session) ;
+    public Collection getSongsBySinger(Singer singer, Session session);
+    public Collection getSongsByGenre(Genre genre, Session session) ;
 }

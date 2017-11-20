@@ -12,8 +12,8 @@ import javax.swing.*;
 import org.hibernate.Session;
 
 public class SingerDAOImpl implements SingerDAO {
-    public void addSinger(Singer singer) throws SQLException{
-        Session session = null;
+    public void addSinger(Singer singer, Session session) {
+        //Session session = null;
         try
         {
             session = HibernateUtil.getSessionFactory().openSession();
@@ -25,15 +25,11 @@ public class SingerDAOImpl implements SingerDAO {
         {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка при добавлении Singer", JOptionPane.OK_OPTION);
         }
-        finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
+
     }
-    public Singer getSingerById(int idsinger) throws SQLException
+    public Singer getSingerById(int idsinger, Session session)
     {
-        Session session = null;
+        //Session session = null;
         Singer singer = null;
         try
         {
@@ -44,32 +40,21 @@ public class SingerDAOImpl implements SingerDAO {
         {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка 'findById' Singer", JOptionPane.OK_OPTION);
         }
-        finally
-        {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
-        }
         return singer;
     }
-    public Collection getAllSingers() throws SQLException {
-        Session session = null;
+    public Collection getAllSingers(Session session){
+        //Session session = null;
         List singers = new ArrayList<Singer>();
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             singers = session.createCriteria(Singer.class).list();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка 'getAll' Singer", JOptionPane.OK_OPTION);
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
         }
         return singers;
     }
 
-    public void deleteSinger(Singer singer) throws SQLException {
-        Session session = null;
+    public void deleteSinger(Singer singer, Session session){
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
@@ -77,10 +62,6 @@ public class SingerDAOImpl implements SingerDAO {
             session.getTransaction().commit();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Ошибка при удалении Singer", JOptionPane.OK_OPTION);
-        } finally {
-            if (session != null && session.isOpen()) {
-                session.close();
-            }
         }
     }
 
