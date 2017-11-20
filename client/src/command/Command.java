@@ -22,7 +22,7 @@ public class Command {
         set song name genre singer  durability
     только надо еще смчоь песню передать
      */
-    private static int findCommandLength = 3;
+    private static int findCommandLength = 2;
     private static int setSingerCommandLength = 3;
     private static int setGenreCommandLength = 3;
     private static int setSongCommandLength = 6;
@@ -51,8 +51,7 @@ public class Command {
         }
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("command", commArray[0]);
-        jsonObject.put("by",commArray[1]);
-        jsonObject.put("value", commArray[2]);
+        jsonObject.put("value", commArray[1]);
         return jsonObject;
     }
     private static JSONObject parseSetCommand(String[] commandArray) throws Exception{
@@ -75,7 +74,7 @@ public class Command {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("command", commandArray[0]);
         jsonObject.put("by", commandArray[1]);
-        jsonObject.put("value", new Singer(commandArray[2]).toJSON());
+        jsonObject.put("value", commandArray[2]);
         return jsonObject;
     }
     private  static JSONObject parseSetGenreCommand(String[] commandArray) throws Exception{
@@ -85,7 +84,7 @@ public class Command {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("command", commandArray[0]);
         jsonObject.put("by", commandArray[1]);
-        jsonObject.put("value", new Genre(commandArray[2]).toJSON());
+        jsonObject.put("value", commandArray[2]);
         return jsonObject;
     }
     private  static JSONObject parseSetSongCommand(String[] commandArray) throws Exception {
