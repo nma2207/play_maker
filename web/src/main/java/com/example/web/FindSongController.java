@@ -6,13 +6,18 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import pack.Singer;
+import work.allWork;
 
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
 public class FindSongController {
+
     @GetMapping("/")
     public ModelAndView index(){
         Map<String, String> model = new HashMap<>();
@@ -24,12 +29,24 @@ public class FindSongController {
         Connector connector = new Connector(/* Список жанров в виде ArrayList на английском trance, pop, rock... */);
         String genre = "genre";
         try{
-            genre = connector.getGenre(singer, song);
+            genre = "";//connector.getGenre(singer, song);
         }
         catch (Exception e){
             genre = "Cannot find";
         }
         Map<String, String> map = new HashMap<>();
+
+        Singer s = new Singer();
+        s.setName_singer("Marat");
+        Collection<Singer> s1;
+        try {
+             s1= allWork.getInstance().getSingerDAO().getAllSingers();
+
+
+        }
+        catch (Exception e){
+            genre="bad";
+        }
         map.put("genre", genre);
         return new ModelAndView("FindGenre",map);
     }
