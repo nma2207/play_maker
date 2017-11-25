@@ -17,13 +17,14 @@ import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
-        /**Collection singers = allWork.getInstance().getSingerDAO().getAllSingers();
+        Session session =null;
+        Collection singers = allWork.getInstance().getSingerDAO().getAllSingers(session);
         Iterator iterator = singers.iterator();
         System.out.println("========Все    исполнители=========");
         while (iterator.hasNext()) {
             Singer singer= (Singer) iterator.next();
             System.out.println(singer.getIdsinger() + ". Исполнитель: " + singer.getName_singer());
-            Collection songs = allWork.getInstance().getSongsDAO().getSongsBySinger(singer);
+            Collection songs = allWork.getInstance().getSongsDAO().getSongsBySinger(singer, session);
 
             Iterator iterator2 = songs.iterator();
             while (iterator2.hasNext()) {
@@ -31,13 +32,13 @@ public class Main {
                 System.out.println(song.getIdsongs() + ". Песня: " + song.getName_song() + ", " + song.getDurability() + ", "+singer.getName_singer());
             }
         }
-        Collection genres = allWork.getInstance().getGenreDAO().getAllGenres();
+        Collection genres = allWork.getInstance().getGenreDAO().getAllGenres(session);
         iterator = genres.iterator();
         System.out.println("========Все    жанры=========");
         while (iterator.hasNext()) {
             Genre genre = (Genre) iterator.next();
             System.out.println(genre.getIdgenre() + ". Жанр: " +  genre.getName_genre());
-            Collection songs = allWork.getInstance().getSongsDAO().getSongsByGenre(genre);
+            Collection songs = allWork.getInstance().getSongsDAO().getSongsByGenre(genre,session);
             Iterator iterator2 = songs.iterator();
             while (iterator2.hasNext()) {
                 Songs song = (Songs) iterator2.next();
@@ -45,6 +46,6 @@ public class Main {
             }
         }
 
-    **/
+
     }
 }
