@@ -93,8 +93,8 @@ public class SongsDAOImpl implements SongsDAO{
         try {
             session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
-            int idsinger = singer.getIdsinger();
-            Query query = session.createQuery(" select s "+ " from Songs s"+ " where s.singer_idsinger = :singerId ").setInteger("singerId",idsinger);
+            long idsinger = singer.getIdsinger();
+            Query query = session.createQuery(" select s "+ " from Songs s"+ " where s.singer_idsinger = :singerId ").setLong("singerId",idsinger);
             songs = (List<Songs>)query.list();
             session.getTransaction().commit();
         } finally {  if (session != null && session.isOpen())  session.close();}

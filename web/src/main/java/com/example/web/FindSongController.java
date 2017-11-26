@@ -38,9 +38,10 @@ public class FindSongController {
 
         Singer s = new Singer();
         s.setName_singer("Marat");
+        //s.setIdsinger(2);
         Collection<Singer> s1;
         try {
-             s1= allWork.getInstance().getSingerDAO().getAllSingers();
+             allWork.getInstance().getSingerDAO().addSinger(s);
 
 
         }
