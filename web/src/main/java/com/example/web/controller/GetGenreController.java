@@ -1,4 +1,4 @@
-package com.example.web;
+package com.example.web.controller;
 
 import APIConnector.Connector;
 import org.springframework.stereotype.Controller;
@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import pack.Genre;
 import pack.Singer;
 import work.allWork;
 
@@ -16,8 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class FindSongController {
-
+public class GetGenreController {
     @GetMapping("/")
     public ModelAndView index(){
         Map<String, String> model = new HashMap<>();
@@ -27,28 +27,27 @@ public class FindSongController {
     @RequestMapping(value ="/get_genre", method = RequestMethod.POST)
     public ModelAndView findSongForm(@RequestParam String singer, @RequestParam String song){
         Connector connector = new Connector(/* Список жанров в виде ArrayList на английском trance, pop, rock... */);
-        String genre = "genre";
+        String genreType = "genre";
         try{
-            genre = "";//connector.getGenre(singer, song);
+            genreType = connector.getGenre(singer, song);
         }
         catch (Exception e){
-            genre = "Cannot find";
+            genreType = "Cannot find";
         }
         Map<String, String> map = new HashMap<>();
-
-        Singer s = new Singer();
-        s.setName_singer("Marat");
-        //s.setIdsinger(2);
-        Collection<Singer> s1;
+        Genre genre = new Genre();
+        genre.setIdgenre(1);
+        genre.setName_genre(genreType);
+        Collection songsList=null;
         try {
-             allWork.getInstance().getSingerDAO().addSinger(s);
-
-
+            songsList = allWork.getInstance().getSongsDAO().getSongsByName("Strobe");
         }
         catch (Exception e){
-            genre="bad";
+            genreType="error";
         }
-        map.put("genre", genre);
+        map.put("genre", genreType);
+
         return new ModelAndView("FindGenre",map);
+
     }
 }

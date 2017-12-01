@@ -118,4 +118,21 @@ public class SongsDAOImpl implements SongsDAO{
         }
         return songs;
     }
+    public Collection getSongsByName(String name) throws SQLException{
+        Session session=null;
+        List songs = new ArrayList<Songs>();
+        try {
+            session = HibernateUtil.getSessionFactory().getCurrentSession();
+            session.beginTransaction();
+            Query query = session.createQuery(" select s "+ " from Songs s"+ " where s.name_song= :name ").setString("name", name);
+            songs = (List<Songs>)query.list();
+            session.getTransaction().commit();
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
+        }
+        return songs;
+
+    }
 }
