@@ -1,11 +1,27 @@
-<!DOCTYPE html>
 <html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/css/main.css" rel="stylesheet" />
+    <title> PlayMaker </title>
+</head>
 <body>
-<h1>Message Page</h1>
-<!--
-    span - тег, в котором указали цвет.
--->
-<h1>{{genre}}</h1>
-<br/><br/><br/>
+<header>
+    <div id="logo_block">
+        <div id="logo">
+            <a href="/"></a>
+        </div>
+    </div>
+</header>
+<section>
+    <div class="find_block">
+        <div class="block_header">Результаты поиска</div>
+        <div class="result_list">
+            <div class="result">
+                ${genre}<!-- Сюда нужно вставить результаты поиска -->
+            </div>
+        </div>
+        <div class="bitton_click"><input type="submit" value="Найти"></div>
+    </div>
+</section>
 </body>
 </html>
