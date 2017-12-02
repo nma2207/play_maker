@@ -1,0 +1,31 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/css/main.css" rel="stylesheet" />
+    <title> PlayMaker </title>
+</head>
+<body>
+<header>
+    <div id="logo_block">
+        <div id="logo">
+            <a href="/"></a>
+        </div>
+    </div>
+</header>
+<section>
+    <div class="find_block">
+        <div class="block_header">Результаты поиска</div>
+        <div class="result_list">
+            <div class="result">
+                <!--{{list}}-->
+                <tr th:each="message : ${list}">
+                    <td th:text="${message}"/>
+                </tr>
+            </div>
+        </div>
+        <div class="bitton_click"><input type="submit" value="Найти"/></div>
+    </div>
+</section>
+</body>
+</html>
