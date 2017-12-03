@@ -1,8 +1,0 @@
-<hibernate-mapping>
-    <class name="pack.Singer">
-        <id name="idsinger" type="integer">
-            <generator class="increment"/>
-        </id>
-        <property name="name_singer" type="string"/>
-    </class>
-</hibernate-mapping>

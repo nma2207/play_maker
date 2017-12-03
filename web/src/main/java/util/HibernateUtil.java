@@ -9,7 +9,7 @@ public class HibernateUtil {
     private static SessionFactory sessionFactory;
     static {
         try {
-            sessionFactory = new Configuration().configure(new File("./src/main/java/resources/hibernate.cfg.xml")).buildSessionFactory();
+            sessionFactory = new Configuration().configure(new File("./src/main/resources/hibernate.cfg.xml")).buildSessionFactory();
         } catch (Throwable ex) {
             System.err.println("Initial SessionFactory creation failed. " + ex);
             ex.printStackTrace();

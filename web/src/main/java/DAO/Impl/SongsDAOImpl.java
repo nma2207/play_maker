@@ -1,6 +1,7 @@
 package DAO.Impl;
 
 import DAO.SongsDAO;
+import converter.Converter;
 import org.hibernate.Query;
 import pack.Singer;
 import pack.Songs;
@@ -108,6 +109,13 @@ public class SongsDAOImpl implements SongsDAO{
             session = HibernateUtil.getSessionFactory().getCurrentSession();
             session.beginTransaction();
             int idgenre = genre.getIdgenre();
+            ArrayList<Genre> genres= Converter.genreConvert(session.createCriteria(Genre.class).list());
+            for(Genre g: genres){
+                if(g.getName_genre().equals(genre.getName_genre())) {
+                    idgenre = g.getIdgenre();
+                    break;
+                }
+            }
             Query query = session.createQuery(" select s "+ " from Songs s"+ " where s.genre_idgenre = :genreId ").setInteger("genreId",idgenre);
             songs = (List<Songs>)query.list();
             session.getTransaction().commit();

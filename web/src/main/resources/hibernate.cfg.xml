@@ -13,8 +13,8 @@
         <property name="show_sql">true</property>
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
-        <mapping resource="Genre.nbm.xml"/>
-        <mapping resource="Singer.nbm.xml"/>
-        <mapping resource="Songs.nbm.xml"/>
+        <mapping class="pack.Songs"/>
+        <mapping class="pack.Singer"/>
+        <mapping  class="pack.Genre"/>
         </session-factory>
 </hibernate-configuration>

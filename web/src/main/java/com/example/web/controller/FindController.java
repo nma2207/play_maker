@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import pack.Genre;
 import pack.Singer;
 import pack.Songs;
-import work.allWork;
+
 
 import java.util.HashMap;
 import java.util.Map;

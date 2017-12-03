@@ -1,6 +1,13 @@
 package pack;
 
-public class Genre {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+@Entity
+@Table
+public class Genre implements Serializable{
+    @Id
     private int idgenre;
     private String name_genre;
     public Genre(){}

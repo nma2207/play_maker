@@ -1,11 +1,16 @@
 package pack;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Set;
 import java.util.HashSet;
 
-
-public class Songs {
+@Entity
+@Table
+public class Songs implements Serializable {
+    @Id
     private int idsongs;
     private String name_song;
     private String durability;

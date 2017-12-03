@@ -1,6 +1,13 @@
 package pack;
 
-public class Singer{
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+@Entity
+@Table
+public class Singer implements Serializable {
+    @Id
     private int idsinger;
     private String name_singer;
     public Singer(){}
