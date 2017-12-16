@@ -14,4 +14,5 @@ public interface SongsDAO {
     public void deleteSong(Songs songs) throws SQLException;
     public Collection getSongsBySinger(Singer singer) throws SQLException;
     public Collection getSongsByGenre(Genre genre) throws SQLException;
+    public Collection getSongsByName(String name) throws SQLException;
 }

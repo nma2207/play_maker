@@ -20,7 +20,7 @@ public class allWork {
         return instance;
     }
 
-    public GenreDAO getGenreDAO(){
+    public static GenreDAO getGenreDAO(){
         if (genreDAO == null){
             genreDAO= new GenreDAOImpl();
         }

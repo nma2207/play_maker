@@ -1,25 +1,34 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link href="/css/main.css" rel="stylesheet" />
     <title> PlayMaker </title>
 </head>
 <body>
-<h2> Добро пожаловать на PlayMaker!!!</h2>
-<h4> Определить жанр песни:</h4>
-<form action="get_genre" method="post">
-    <p>Кто поет?  <input type="text" name="singer"></p>
-    <p>Что поет?  <input type="text" name="song"></p>
-    <p><input type="submit" value="Определить жанр"></p>
-</form>
-<br>
-<br>
-<h4> Найти песни по жанру</h4>
-<form action = "get_by_genre">
-    <p>Какой жанр? <input type = "text" name="genre"></p>
-    <p><input type="submit" value="Песн"></p>
-</form>
-
-<h4><a href = "/all_songs">Показать все песни</a></h4>
-<h4><a href = "">Показать всех певцов</a></h4>
+<header>
+    <div id="logo_block">
+        <div id="logo">
+            <a href="/"></a>
+        </div>
+    </div>
+</header>
+<section>
+    <div class="find_block">
+        <div class="block_header">Найти похожее</div>
+        <form action="get_genre" method="post">
+            <div class="my_line"> <div class="my_text">Артист</div><div class="selector"><input type="text" name="singer"></div></div>
+            <div class="my_line"> <div class="my_text">Песня</div><div class="selector"><input type="text" name="song"></div></div>
+            <div class="bitton_click"><input type="submit" value="Найти"></div>
+        </form>
+    </div>
+    <div class="find_block">
+        <div class="block_header">Расширенный поиск</div>
+        <form action = "get_all" method="post">
+            <div class="my_line"><div class="my_text">Название</div><div class="selector"><input type="text" name="what"></div></div>
+            <div class="my_line"><div class="my_text">Параметр</div><div class="selector"><input type="text" name="by"></div></div>
+            <div class="bitton_click"><input type="submit" value="Найти"></div>
+        </form>
+    </div>
+</section>
 </body>
 </html>
