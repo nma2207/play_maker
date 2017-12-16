@@ -21,10 +21,9 @@ import java.util.Map;
 import java.util.Collection;
 @Controller
 public class FindController {
-    @RequestMapping(value ="/get_gen", method = RequestMethod.POST)
+    @RequestMapping(value ="/get_all", method = RequestMethod.POST)
     public ModelAndView findSongForm( @RequestParam String what, @RequestParam String by){
         ModelAndView res;
-        Map<String, String> map = new HashMap<>();
         Collection<Songs> songsList=null;
         if(by.equals("Жанр")){
             Genre genre = new Genre();
@@ -46,13 +45,14 @@ public class FindController {
 
         if(by.equals("Название")){
             try {
-                songsList = allWork.getSongsDAO().getSongsByName(by);
+                songsList = allWork.getSongsDAO().getSongsByName(what);
             }
             catch (Exception e){}
         }
         ArrayList<Songs> songs= Converter.songConvert(songsList);
-        res = new ModelAndView("list");
+        res = new ModelAndView("FindAll");
         res.addObject("list", songs);
+
         return res;
 
     }

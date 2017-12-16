@@ -55,8 +55,10 @@ public class GetGenreController {
         }
         ArrayList<Songs> songs=Converter.songConvert(songsList);
         map.put("genre", genreType);
-        ModelAndView res = new ModelAndView("list");
+        ModelAndView res = new ModelAndView("FindGenre");
+        res.addObject("genre", genreType);
         res.addObject("list", songs);
+
         return res;
 
     }
