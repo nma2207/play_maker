@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import pack.Genre;
 import pack.Singer;
+import pack.Song;
 import pack.Songs;
 import work.allWork;
 
@@ -24,7 +25,7 @@ public class FindController {
     @RequestMapping(value ="/get_all", method = RequestMethod.POST)
     public ModelAndView findSongForm( @RequestParam String what, @RequestParam String by){
         Collection<Songs> songsList=null;
-        if(by.equals("Жанр")){
+        if(by.equals("Genre")){
             Genre genre = new Genre();
             genre.setName_genre(what);
             try {
@@ -33,7 +34,7 @@ public class FindController {
             catch (Exception e){}
         }
 
-        if(by.equals("Исполнитель")){
+        if(by.equals("Artist")){
             Singer singer =new Singer();
             singer.setName_singer(what);
             try {
@@ -42,15 +43,26 @@ public class FindController {
             catch (Exception e){}
         }
 
-        if(by.equals("Название")){
+        if(by.equals("Song")){
             try {
                 songsList = allWork.getSongsDAO().getSongsByName(what);
             }
             catch (Exception e){}
         }
         ArrayList<Songs> songs= Converter.songConvert(songsList);
+        ArrayList<Singer> singers=new ArrayList<>();
+        try{
+            singers=Converter.singerConvert(allWork.getSingerDAO().getAllSingers());
+        }
+        catch (Exception e){}
+
+        ArrayList<Song> newSongs = Converter.getSongsWithArtist(singers, songs);
+
+
+
+
         ModelAndView res = new ModelAndView("FindAll");
-        res.addObject("list", songs);
+        res.addObject("list", newSongs);
 
         return res;
 

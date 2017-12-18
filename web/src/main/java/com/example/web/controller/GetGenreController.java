@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import pack.Genre;
 import pack.Singer;
+import pack.Song;
 import pack.Songs;
 
 
@@ -53,11 +54,18 @@ public class GetGenreController {
         catch (Exception e){
             genreType="error";
         }
+
+        ArrayList<Singer> singers=new ArrayList<>();
+        try{
+            singers=Converter.singerConvert(allWork.getSingerDAO().getAllSingers());
+        }
+        catch (Exception e){}
         ArrayList<Songs> songs=Converter.songConvert(songsList);
+        ArrayList<Song> newSongs = Converter.getSongsWithArtist(singers, songs);
         map.put("genre", genreType);
         ModelAndView res = new ModelAndView("FindGenre");
         res.addObject("genre", genreType);
-        res.addObject("list", songs);
+        res.addObject("list", newSongs);
 
         return res;
 

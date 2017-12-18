@@ -2,6 +2,7 @@ package converter;
 
 import pack.Genre;
 import pack.Singer;
+import pack.Song;
 import pack.Songs;
 
 import java.lang.reflect.Field;
@@ -120,5 +121,26 @@ public class Converter {
 
         }
         return result;
+    }
+    public static ArrayList<Song> getSongsWithArtist(ArrayList<Singer> singers, ArrayList<Songs> songs)
+    {
+        ArrayList<Song> res = new ArrayList<>();
+        for(Songs s:songs)
+        {
+            Song song = new Song();
+            song.setName(s.getName_song());
+            song.setPath(s.getPath());
+            String singer = "NoName";
+            for(Singer s1:singers)
+            {
+                if(s1.getIdsinger()==s.getSinger_idsinger()) {
+                    singer = s1.getName_singer();
+                    break;
+                }
+            }
+            song.setSinger(singer);
+            res.add(song);
+        }
+        return res;
     }
 }

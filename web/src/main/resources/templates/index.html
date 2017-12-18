@@ -25,7 +25,11 @@
         <div class="block_header">Расширенный поиск</div>
         <form action = "get_all" method="post">
             <div class="my_line"><div class="my_text">Название</div><div class="selector"><input type="text" name="what"></div></div>
-            <div class="my_line"><div class="my_text">Параметр</div><div class="selector"><input type="text" name="by"></div></div>
+            <div class="my_line"><div class="my_text">Параметр</div><div class="selector"><select id="soflow" name="by">
+			  <option value="Song">Песня</option>
+			  <option value="Artist">Артист</option>
+			  <option value="Genre">Жанр</option>
+			</select></div></div>
             <div class="bitton_click"><input type="submit" value="Найти"></div>
         </form>
     </div>

@@ -1,0 +1,8 @@
+<hibernate-mapping>
+    <class name="server.pack.Genre">
+        <id name="idgenre" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property name="name_genre" type="string"/>
+    </class>
+</hibernate-mapping>

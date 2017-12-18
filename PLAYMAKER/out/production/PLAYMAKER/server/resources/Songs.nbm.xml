@@ -1,0 +1,15 @@
+<hibernate-mapping>
+    <class name="server.pack.Songs">
+        <id name="idsongs" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property name="name_song" type="string"/>
+        <property name="durability" type="string"/>
+        <property name="path" type="string"/>
+        <property name="singer_idsinger" type="integer"/>
+        <property name="genre_idgenre" type="integer"/>
+        <!---<many-to-one name="singers" class="pack.Singer"/>
+        <many-to-one name="genres" class="pack.Genre"/>-->
+
+    </class>
+</hibernate-mapping>

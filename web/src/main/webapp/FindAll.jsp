@@ -18,28 +18,27 @@
 </header>
 <section>
     <div class="find_block">
-        <div class="block_header">Результаты поиска</div>
+        <div class="block_header">Результаты поиска по запросу</div>
         <div class="result_list">
-            <table>
+            <table class="result">
                 <c:forEach var="listValue" items="${list}">
-                    <!--<div class="result">-->
-                    <tr>
-                        <td>
-                                ${listValue.getName_song()}
+                    <tr class="table_element">
+                        <td class="text_element">
+                                ${listValue.getSinger()} - ${listValue.getName()}
                         </td>
-                        <td>
+                        <td class="audio_element">
                             <audio controls="">
                                 <source src="music/${listValue.getPath()}">
                                 Тег audio не поддерживается вашим браузером.
                             </audio>
                         </td>
-
                     </tr>
-                    <!--</div>-->
                 </c:forEach>
-                <!-- Сюда нужно вставить результаты поиска -->
             </table>
-        <div class="bitton_click"><input type="submit" value="Найти"/></div>
+        </div>
+        <form action="/">
+            <div class="bitton_click_big"><input type="submit" value="Вернуться назад"/></div>
+        </form>
     </div>
 </section>
 </body>

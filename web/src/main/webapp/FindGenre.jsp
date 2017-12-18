@@ -16,30 +16,28 @@
 </header>
 <section>
     <div class="find_block">
-        Определен жанр ${genre}
-        <div class="block_header">Результаты поиска</div>
+        <div class="block_header">Результаты поиска<br>Определен жанр ${genre}</div>
         <div class="result_list">
-            <table>
+            <table class="result">
                 <c:forEach var="listValue" items="${list}">
-            <!--<div class="result">-->
-                    <tr>
-                        <td>
-                            ${listValue.getName_song()}
+                    <tr class="table_element">
+                        <td class="text_element">
+                                ${listValue.getSinger()} - ${listValue.getName()}
                         </td>
-                    <td>
-            <audio controls="">
-            <source src="music/${listValue.getPath()}">
-            Тег audio не поддерживается вашим браузером.
-            </audio>
-            </td>
+                        <td class="audio_element">
+                            <audio controls="">
+                                <source src="music/${listValue.getPath()}">
+                                Тег audio не поддерживается вашим браузером.
+                            </audio>
 
-            </tr>
-            <!--</div>-->
-            </c:forEach>
-            <!-- Сюда нужно вставить результаты поиска -->
+                        </td>
+                    </tr>
+                </c:forEach>
             </table>
         </div>
-        <div class="bitton_click"><input type="submit" value="Найти"></div>
+        <form action="/">
+            <div class="bitton_click_big"><input type="submit" value="Вернуться назад"/></div>
+        </form>
     </div>
 </section>
 </body>
